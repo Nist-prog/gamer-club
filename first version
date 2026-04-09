@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gaming Hub PRO</title>
+
+<style>
+body {
+  background: #020617;
+  color: white;
+  font-family: Arial;
+}
+header {
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+  color: #22c55e;
+}
+.card {
+  background: #0f172a;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #22c55e44;
+}
+input, button {
+  padding: 10px;
+  margin: 5px;
+}
+button {
+  background: #22c55e;
+  border: none;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<header>⚡ Gaming Hub PRO</header>
+
+<div class="card">
+  <h2>Login</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="register()">Register</button>
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="card">
+  <h2>Save Loadout</h2>
+  <input id="loadout" placeholder="Write loadout">
+  <button onclick="saveLoadout()">Save</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, addDoc, collection } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  projectId: "PASTE_HERE"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.register = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  await createUserWithEmailAndPassword(auth, email, password);
+  alert("Registered!");
+};
+
+window.login = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  await signInWithEmailAndPassword(auth, email, password);
+  alert("Logged in!");
+};
+
+window.saveLoadout = async () => {
+  const loadout = document.getElementById("loadout").value;
+  await addDoc(collection(db, "loadouts"), { loadout });
+  alert("Saved!");
+};
+</script>
+
+</body>
+</html>
