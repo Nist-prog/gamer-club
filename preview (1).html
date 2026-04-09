@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <title>Gaming Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+    }
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    button {
+      background: #22c55e;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>🎮 Gaming Hub</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🔥 Rivals Loadout</h2>
+    <p>Assault Rifle + Revolver + Scythe + Molotov</p>
+    <button onclick="copyText()">Copy Loadout</button>
+  </div>
+
+  <div class="card">
+    <h2>⛏️ Minecraft Tips</h2>
+    <p>Mine diamonds at Y=-58 for best results</p>
+  </div>
+
+</div>
+
+<script>
+function copyText() {
+  navigator.clipboard.writeText("Assault Rifle + Revolver + Scythe + Molotov");
+  alert("Copied!");
+}
+</script>
+
+</body>
+</html>
